@@ -1,6 +1,19 @@
 import { Resend } from "resend";
 
 export default async function handler(req, res) {
+  // ---------------------------
+  // CORS FIX (Very IMPORTANT)
+  // ---------------------------
+  res.setHeader("Access-Control-Allow-Origin", "*"); 
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  // Handle preflight OPTIONS request
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
+  // Only allow POST
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
@@ -8,6 +21,7 @@ export default async function handler(req, res) {
   try {
     const { name, email, phone, message } = req.body;
 
+    // Validate fields
     if (!name || !email || !message) {
       return res.status(400).json({ error: "Missing required fields" });
     }
@@ -21,7 +35,7 @@ export default async function handler(req, res) {
       html: `
         <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8fafc; padding: 40px;">
           <div style="max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-            
+
             <!-- Header -->
             <div style="background-color: #002f61; color: #ffffff; text-align: center; padding: 25px 20px;">
               <h1 style="margin: 0; font-size: 22px; font-weight: 600;">Chinook Upholstery</h1>
