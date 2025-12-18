@@ -71,7 +71,7 @@ export default async function handler(req, res) {
 
     await resend.emails.send({
       from: "Chinook Upholstery <onboarding@resend.dev>",
-      to: "info@chinookupholstery.com",
+      to: "maaz582ss@gmail.com", //info@chinookupholstery.com
       subject: `📩 New Message from ${name} — Chinook Upholstery`,
       html: `
         <div style="font-family: Arial; background-color: #f8fafc; padding: 40px;">
