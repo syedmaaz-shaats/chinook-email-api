@@ -70,8 +70,8 @@ export default async function handler(req, res) {
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     await resend.emails.send({
-      from: "Chinook Upholstery <onboarding@resend.dev>",
-      to: "maaz582ss@gmail.com", //info@chinookupholstery.com
+      from: "Chinook Upholstery <no-reply@chinookupholstery.com>",
+      to: "info@chinookupholstery.com", 
       subject: `📩 New Message from ${name} — Chinook Upholstery`,
       html: `
         <div style="font-family: Arial; background-color: #f8fafc; padding: 40px;">
